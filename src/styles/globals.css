@@ -1,0 +1,320 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
+
+	--red: #e20f07;
+	--blu: #278de1;
+	--ylw: #ffff00;
+	--ppl: #481a66;
+	--pnk: #eb23aa;
+	--brw: #9a4a01;
+	--mos: #606700;
+	--grn: #5fa300;
+	--blk: #000;
+	--wht: #fff;
+	--gry: #a5a5a5;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
+}
+
+body {
+	color: rgb(var(--foreground-rgb));
+	background: linear-gradient(
+			to bottom,
+			transparent,
+			rgb(var(--background-end-rgb))
+		)
+		rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+	.text-balance {
+		text-wrap: balance;
+	}
+}
+
+@keyframes rotateBall {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+@-webkit-keyframes rotateBall {
+	0% {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(50deg);
+	}
+	0% {
+		transform: rotate(360deg);
+	}
+}
+html,
+body {
+	margin: 0;
+	height: 100%;
+	width: 100%;
+}
+
+#loading {
+	height: 48px;
+	width: 264px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.pokeball {
+	width: 4px;
+	height: 4px;
+	transform-origin: 24px 24px;
+	animation: rotateBall 1.5s infinite forwards;
+}
+.pokeball#normal {
+	box-shadow: 
+      /* Row: 1 */ 16px 0 0 var(--blk), 20px 0 0 var(--blk),
+		24px 0 0 var(--blk), 28px 0 0 var(--blk), /* Row: 2 */ 8px 4px 0 var(--blk),
+		12px 4px 0 var(--blk), 16px 4px 0 var(--red), 20px 4px 0 var(--red),
+		24px 4px 0 var(--red), 28px 4px 0 var(--red), 32px 4px 0 var(--blk),
+		36px 4px 0 var(--blk), /* Row: 3 */ 4px 8px 0 var(--blk),
+		8px 8px 0 var(--red), 12px 8px 0 var(--red), 16px 8px 0 var(--wht),
+		20px 8px 0 var(--red), 24px 8px 0 var(--red), 28px 8px 0 var(--red),
+		32px 8px 0 var(--red), 36px 8px 0 var(--red), 40px 8px 0 var(--blk),
+		/* Row: 4 */ 4px 12px 0 var(--blk), 8px 12px 0 var(--red),
+		12px 12px 0 var(--wht), 16px 12px 0 var(--wht), 20px 12px 0 var(--wht),
+		24px 12px 0 var(--red), 28px 12px 0 var(--red), 32px 12px 0 var(--red),
+		36px 12px 0 var(--red), 40px 12px 0 var(--blk),
+		/* Row: 5 */ 0px 16px 0 var(--blk), 4px 16px 0 var(--red),
+		8px 16px 0 var(--red), 12px 16px 0 var(--red), 16px 16px 0 var(--wht),
+		20px 16px 0 var(--red), 24px 16px 0 var(--red), 28px 16px 0 var(--red),
+		32px 16px 0 var(--red), 36px 16px 0 var(--red), 40px 16px 0 var(--red),
+		44px 16px 0 var(--blk), /* Row: 6 */ 0px 20px 0 var(--blk),
+		4px 20px 0 var(--red), 8px 20px 0 var(--red), 12px 20px 0 var(--red),
+		16px 20px 0 var(--red), 20px 20px 0 var(--blk), 24px 20px 0 var(--blk),
+		28px 20px 0 var(--red), 32px 20px 0 var(--red), 36px 20px 0 var(--red),
+		40px 20px 0 var(--red), 44px 20px 0 var(--blk),
+		/* Row: 7 */ 0px 24px 0 var(--blk), 4px 24px 0 var(--blk),
+		8px 24px 0 var(--red), 12px 24px 0 var(--red), 16px 24px 0 var(--blk),
+		20px 24px 0 var(--wht), 24px 24px 0 var(--gry), 28px 24px 0 var(--blk),
+		32px 24px 0 var(--red), 36px 24px 0 var(--red), 40px 24px 0 var(--blk),
+		44px 24px 0 var(--blk), /* Row: 8 */ 0px 28px 0 var(--blk),
+		4px 28px 0 var(--wht), 8px 28px 0 var(--blk), 12px 28px 0 var(--blk),
+		16px 28px 0 var(--blk), 20px 28px 0 var(--gry), 24px 28px 0 var(--gry),
+		28px 28px 0 var(--blk), 32px 28px 0 var(--blk), 36px 28px 0 var(--blk),
+		40px 28px 0 var(--gry), 44px 28px 0 var(--blk),
+		/* Row: 9 */ 4px 32px 0 var(--blk), 8px 32px 0 var(--wht),
+		12px 32px 0 var(--wht), 16px 32px 0 var(--wht), 20px 32px 0 var(--blk),
+		24px 32px 0 var(--blk), 28px 32px 0 var(--gry), 32px 32px 0 var(--gry),
+		36px 32px 0 var(--gry), 40px 32px 0 var(--blk),
+		/* Row: 10 */ 4px 36px 0 var(--blk), 8px 36px 0 var(--gry),
+		12px 36px 0 var(--wht), 16px 36px 0 var(--wht), 20px 36px 0 var(--wht),
+		24px 36px 0 var(--gry), 28px 36px 0 var(--gry), 32px 36px 0 var(--gry),
+		36px 36px 0 var(--gry), 40px 36px 0 var(--blk),
+		/* Row: 11 */ 8px 40px 0 var(--blk), 12px 40px 0 var(--blk),
+		16px 40px 0 var(--gry), 20px 40px 0 var(--gry), 24px 40px 0 var(--gry),
+		28px 40px 0 var(--gry), 32px 40px 0 var(--blk), 36px 40px 0 var(--blk),
+		/* Row: 12 */ 16px 44px 0 var(--blk), 20px 44px 0 var(--blk),
+		24px 44px 0 var(--blk), 28px 44px 0 var(--blk);
+}
+.pokeball#great {
+	animation-delay: 0.25s;
+	margin: -4px 0 0 54px;
+	box-shadow: 
+      /* Row: 1 */ 16px 0 0 var(--blk), 20px 0 0 var(--blk),
+		24px 0 0 var(--blk), 28px 0 0 var(--blk), /* Row: 2 */ 8px 4px 0 var(--blk),
+		12px 4px 0 var(--blk), 16px 4px 0 var(--blu), 20px 4px 0 var(--blu),
+		24px 4px 0 var(--blu), 28px 4px 0 var(--blu), 32px 4px 0 var(--blk),
+		36px 4px 0 var(--blk), /* Row: 3 */ 4px 8px 0 var(--blk),
+		8px 8px 0 var(--red), 12px 8px 0 var(--red), 16px 8px 0 var(--blu),
+		20px 8px 0 var(--blu), 24px 8px 0 var(--blu), 28px 8px 0 var(--blu),
+		32px 8px 0 var(--red), 36px 8px 0 var(--red), 40px 8px 0 var(--blk),
+		/* Row: 4 */ 4px 12px 0 var(--blk), 8px 12px 0 var(--red),
+		12px 12px 0 var(--red), 16px 12px 0 var(--red), 20px 12px 0 var(--blu),
+		24px 12px 0 var(--blu), 28px 12px 0 var(--red), 32px 12px 0 var(--red),
+		36px 12px 0 var(--red), 40px 12px 0 var(--blk),
+		/* Row: 5 */ 0px 16px 0 var(--blk), 4px 16px 0 var(--blu),
+		8px 16px 0 var(--blu), 12px 16px 0 var(--red), 16px 16px 0 var(--red),
+		20px 16px 0 var(--blu), 24px 16px 0 var(--blu), 28px 16px 0 var(--red),
+		32px 16px 0 var(--red), 36px 16px 0 var(--blu), 40px 16px 0 var(--blu),
+		44px 16px 0 var(--blk), /* Row: 6 */ 0px 20px 0 var(--blk),
+		4px 20px 0 var(--blu), 8px 20px 0 var(--blu), 12px 20px 0 var(--blu),
+		16px 20px 0 var(--blu), 20px 20px 0 var(--blk), 24px 20px 0 var(--blk),
+		28px 20px 0 var(--blu), 32px 20px 0 var(--blu), 36px 20px 0 var(--blu),
+		40px 20px 0 var(--blu), 44px 20px 0 var(--blk),
+		/* Row: 7 */ 0px 24px 0 var(--blk), 4px 24px 0 var(--blk),
+		8px 24px 0 var(--blu), 12px 24px 0 var(--blu), 16px 24px 0 var(--blk),
+		20px 24px 0 var(--wht), 24px 24px 0 var(--gry), 28px 24px 0 var(--blk),
+		32px 24px 0 var(--blu), 36px 24px 0 var(--blu), 40px 24px 0 var(--blk),
+		44px 24px 0 var(--blk), /* Row: 8 */ 0px 28px 0 var(--blk),
+		4px 28px 0 var(--wht), 8px 28px 0 var(--blk), 12px 28px 0 var(--blk),
+		16px 28px 0 var(--blk), 20px 28px 0 var(--gry), 24px 28px 0 var(--gry),
+		28px 28px 0 var(--blk), 32px 28px 0 var(--blk), 36px 28px 0 var(--blk),
+		40px 28px 0 var(--gry), 44px 28px 0 var(--blk),
+		/* Row: 9 */ 4px 32px 0 var(--blk), 8px 32px 0 var(--wht),
+		12px 32px 0 var(--wht), 16px 32px 0 var(--wht), 20px 32px 0 var(--blk),
+		24px 32px 0 var(--blk), 28px 32px 0 var(--gry), 32px 32px 0 var(--gry),
+		36px 32px 0 var(--gry), 40px 32px 0 var(--blk),
+		/* Row: 10 */ 4px 36px 0 var(--blk), 8px 36px 0 var(--gry),
+		12px 36px 0 var(--wht), 16px 36px 0 var(--wht), 20px 36px 0 var(--wht),
+		24px 36px 0 var(--gry), 28px 36px 0 var(--gry), 32px 36px 0 var(--gry),
+		36px 36px 0 var(--gry), 40px 36px 0 var(--blk),
+		/* Row: 11 */ 8px 40px 0 var(--blk), 12px 40px 0 var(--blk),
+		16px 40px 0 var(--gry), 20px 40px 0 var(--gry), 24px 40px 0 var(--gry),
+		28px 40px 0 var(--gry), 32px 40px 0 var(--blk), 36px 40px 0 var(--blk),
+		/* Row: 12 */ 16px 44px 0 var(--blk), 20px 44px 0 var(--blk),
+		24px 44px 0 var(--blk), 28px 44px 0 var(--blk);
+}
+.pokeball#ultra {
+	animation-delay: 0.5s;
+	margin: -4px 0 0 108px;
+	box-shadow: 
+      /* Row: 1 */ 16px 0 0 var(--blk), 20px 0 0 var(--blk),
+		24px 0 0 var(--blk), 28px 0 0 var(--blk), /* Row: 2 */ 8px 4px 0 var(--blk),
+		12px 4px 0 var(--blk), 16px 4px 0 var(--ylw), 20px 4px 0 var(--ylw),
+		24px 4px 0 var(--ylw), 28px 4px 0 var(--ylw), 32px 4px 0 var(--blk),
+		36px 4px 0 var(--blk), /* Row: 3 */ 4px 8px 0 var(--blk),
+		8px 8px 0 var(--ylw), 12px 8px 0 var(--ylw), 16px 8px 0 var(--ylw),
+		20px 8px 0 var(--ylw), 24px 8px 0 var(--ylw), 28px 8px 0 var(--ylw),
+		32px 8px 0 var(--ylw), 36px 8px 0 var(--ylw), 40px 8px 0 var(--blk),
+		/* Row: 4 */ 4px 12px 0 var(--blk), 8px 12px 0 var(--ylw),
+		12px 12px 0 var(--ylw), 16px 12px 0 var(--blk), 20px 12px 0 var(--blk),
+		24px 12px 0 var(--blk), 28px 12px 0 var(--blk), 32px 12px 0 var(--ylw),
+		36px 12px 0 var(--ylw), 40px 12px 0 var(--blk),
+		/* Row: 5 */ 0px 16px 0 var(--blk), 4px 16px 0 var(--blk),
+		8px 16px 0 var(--ylw), 12px 16px 0 var(--ylw), 16px 16px 0 var(--blk),
+		20px 16px 0 var(--blk), 24px 16px 0 var(--blk), 28px 16px 0 var(--blk),
+		32px 16px 0 var(--ylw), 36px 16px 0 var(--ylw), 40px 16px 0 var(--blk),
+		44px 16px 0 var(--blk), /* Row: 6 */ 0px 20px 0 var(--blk),
+		4px 20px 0 var(--blk), 8px 20px 0 var(--blk), 12px 20px 0 var(--blk),
+		16px 20px 0 var(--blk), 20px 20px 0 var(--blk), 24px 20px 0 var(--blk),
+		28px 20px 0 var(--blk), 32px 20px 0 var(--blk), 36px 20px 0 var(--blk),
+		40px 20px 0 var(--blk), 44px 20px 0 var(--blk),
+		/* Row: 7 */ 0px 24px 0 var(--blk), 4px 24px 0 var(--blk),
+		8px 24px 0 var(--blk), 12px 24px 0 var(--blk), 16px 24px 0 var(--blk),
+		20px 24px 0 var(--wht), 24px 24px 0 var(--gry), 28px 24px 0 var(--blk),
+		32px 24px 0 var(--blk), 36px 24px 0 var(--blk), 40px 24px 0 var(--blk),
+		44px 24px 0 var(--blk), /* Row: 8 */ 0px 28px 0 var(--blk),
+		4px 28px 0 var(--wht), 8px 28px 0 var(--blk), 12px 28px 0 var(--blk),
+		16px 28px 0 var(--blk), 20px 28px 0 var(--gry), 24px 28px 0 var(--gry),
+		28px 28px 0 var(--blk), 32px 28px 0 var(--blk), 36px 28px 0 var(--blk),
+		40px 28px 0 var(--gry), 44px 28px 0 var(--blk),
+		/* Row: 9 */ 4px 32px 0 var(--blk), 8px 32px 0 var(--wht),
+		12px 32px 0 var(--wht), 16px 32px 0 var(--wht), 20px 32px 0 var(--blk),
+		24px 32px 0 var(--blk), 28px 32px 0 var(--gry), 32px 32px 0 var(--gry),
+		36px 32px 0 var(--gry), 40px 32px 0 var(--blk),
+		/* Row: 10 */ 4px 36px 0 var(--blk), 8px 36px 0 var(--gry),
+		12px 36px 0 var(--wht), 16px 36px 0 var(--wht), 20px 36px 0 var(--wht),
+		24px 36px 0 var(--gry), 28px 36px 0 var(--gry), 32px 36px 0 var(--gry),
+		36px 36px 0 var(--gry), 40px 36px 0 var(--blk),
+		/* Row: 11 */ 8px 40px 0 var(--blk), 12px 40px 0 var(--blk),
+		16px 40px 0 var(--gry), 20px 40px 0 var(--gry), 24px 40px 0 var(--gry),
+		28px 40px 0 var(--gry), 32px 40px 0 var(--blk), 36px 40px 0 var(--blk),
+		/* Row: 12 */ 16px 44px 0 var(--blk), 20px 44px 0 var(--blk),
+		24px 44px 0 var(--blk), 28px 44px 0 var(--blk);
+}
+.pokeball#master {
+	animation-delay: 0.75s;
+	margin: -4px 0 0 162px;
+	box-shadow: 
+      /* Row: 1 */ 16px 0 0 var(--blk), 20px 0 0 var(--blk),
+		24px 0 0 var(--blk), 28px 0 0 var(--blk), /* Row: 2 */ 8px 4px 0 var(--blk),
+		12px 4px 0 var(--blk), 16px 4px 0 var(--ppl), 20px 4px 0 var(--ppl),
+		24px 4px 0 var(--ppl), 28px 4px 0 var(--ppl), 32px 4px 0 var(--blk),
+		36px 4px 0 var(--blk), /* Row: 3 */ 4px 8px 0 var(--blk), 8px 8px 0 var(--pnk),
+		12px 8px 0 var(--pnk), 16px 8px 0 var(--ppl), 20px 8px 0 var(--ppl),
+		24px 8px 0 var(--ppl), 28px 8px 0 var(--ppl), 32px 8px 0 var(--pnk),
+		36px 8px 0 var(--pnk), 40px 8px 0 var(--blk), /* Row: 4 */ 4px 12px 0 var(--blk),
+		8px 12px 0 var(--pnk), 12px 12px 0 var(--wht), 16px 12px 0 var(--wht),
+		20px 12px 0 var(--ppl), 24px 12px 0 var(--ppl), 28px 12px 0 var(--wht),
+		32px 12px 0 var(--wht), 36px 12px 0 var(--pnk), 40px 12px 0 var(--blk),
+		/* Row: 5 */ 0px 16px 0 var(--blk), 4px 16px 0 var(--ppl),
+		8px 16px 0 var(--ppl), 12px 16px 0 var(--wht), 16px 16px 0 var(--ppl),
+		20px 16px 0 var(--wht), 24px 16px 0 var(--wht), 28px 16px 0 var(--ppl),
+		32px 16px 0 var(--wht), 36px 16px 0 var(--ppl), 40px 16px 0 var(--ppl),
+		44px 16px 0 var(--blk), /* Row: 6 */ 0px 20px 0 var(--blk),
+		4px 20px 0 var(--ppl), 8px 20px 0 var(--ppl), 12px 20px 0 var(--ppl),
+		16px 20px 0 var(--ppl), 20px 20px 0 var(--blk), 24px 20px 0 var(--blk),
+		28px 20px 0 var(--ppl), 32px 20px 0 var(--ppl), 36px 20px 0 var(--ppl),
+		40px 20px 0 var(--ppl), 44px 20px 0 var(--blk),
+		/* Row: 7 */ 0px 24px 0 var(--blk), 4px 24px 0 var(--blk),
+		8px 24px 0 var(--ppl), 12px 24px 0 var(--ppl), 16px 24px 0 var(--blk),
+		20px 24px 0 var(--wht), 24px 24px 0 var(--gry), 28px 24px 0 var(--blk),
+		32px 24px 0 var(--ppl), 36px 24px 0 var(--ppl), 40px 24px 0 var(--blk),
+		44px 24px 0 var(--blk), /* Row: 8 */ 0px 28px 0 var(--blk),
+		4px 28px 0 var(--wht), 8px 28px 0 var(--blk), 12px 28px 0 var(--blk),
+		16px 28px 0 var(--blk), 20px 28px 0 var(--gry), 24px 28px 0 var(--gry),
+		28px 28px 0 var(--blk), 32px 28px 0 var(--blk), 36px 28px 0 var(--blk),
+		40px 28px 0 var(--gry), 44px 28px 0 var(--blk),
+		/* Row: 9 */ 4px 32px 0 var(--blk), 8px 32px 0 var(--wht),
+		12px 32px 0 var(--wht), 16px 32px 0 var(--wht), 20px 32px 0 var(--blk),
+		24px 32px 0 var(--blk), 28px 32px 0 var(--gry), 32px 32px 0 var(--gry),
+		36px 32px 0 var(--gry), 40px 32px 0 var(--blk),
+		/* Row: 10 */ 4px 36px 0 var(--blk), 8px 36px 0 var(--gry),
+		12px 36px 0 var(--wht), 16px 36px 0 var(--wht), 20px 36px 0 var(--wht),
+		24px 36px 0 var(--gry), 28px 36px 0 var(--gry), 32px 36px 0 var(--gry),
+		36px 36px 0 var(--gry), 40px 36px 0 var(--blk),
+		/* Row: 11 */ 8px 40px 0 var(--blk), 12px 40px 0 var(--blk),
+		16px 40px 0 var(--gry), 20px 40px 0 var(--gry), 24px 40px 0 var(--gry),
+		28px 40px 0 var(--gry), 32px 40px 0 var(--blk), 36px 40px 0 var(--blk),
+		/* Row: 12 */ 16px 44px 0 var(--blk), 20px 44px 0 var(--blk),
+		24px 44px 0 var(--blk), 28px 44px 0 var(--blk);
+}
+.pokeball#safari {
+	animation-delay: 1s;
+	margin: -4px 0 0 216px;
+	box-shadow: 
+      /* Row: 1 */ 16px 0 0 var(--blk), 20px 0 0 var(--blk),
+		24px 0 0 var(--blk), 28px 0 0 var(--blk), /* Row: 2 */ 8px 4px 0 var(--blk),
+		12px 4px 0 var(--blk), 16px 4px 0 var(--brw), 20px 4px 0 var(--brw),
+		24px 4px 0 var(--mos), 28px 4px 0 var(--grn), 32px 4px 0 var(--blk),
+		36px 4px 0 var(--blk), /* Row: 3 */ 4px 8px 0 var(--blk), 8px 8px 0 var(--mos),
+		12px 8px 0 var(--mos), 16px 8px 0 var(--mos), 20px 8px 0 var(--brw),
+		24px 8px 0 var(--brw), 28px 8px 0 var(--grn), 32px 8px 0 var(--mos),
+		36px 8px 0 var(--brw), 40px 8px 0 var(--blk),
+		/* Row: 4 */ 4px 12px 0 var(--blk), 8px 12px 0 var(--brw),
+		12px 12px 0 var(--brw), 16px 12px 0 var(--brw), 20px 12px 0 var(--brw),
+		24px 12px 0 var(--brw), 28px 12px 0 var(--grn), 32px 12px 0 var(--mos), 36px 12px 0 var(--mos),
+		40px 12px 0 var(--blk), /* Row: 5 */ 0px 16px 0 var(--blk), 4px 16px 0 var(--grn),
+		8px 16px 0 var(--mos), 12px 16px 0 var(--grn), 16px 16px 0 var(--grn), 20px 16px 0 var(--mos),
+		24px 16px 0 var(--mos), 28px 16px 0 var(--mos), 32px 16px 0 var(--grn), 36px 16px 0 var(--brw),
+		40px 16px 0 var(--brw), 44px 16px 0 var(--blk),
+		/* Row: 6 */ 0px 20px 0 var(--blk), 4px 20px 0 var(--grn), 8px 20px 0 var(--mos),
+		12px 20px 0 var(--grn), 16px 20px 0 var(--mos), 20px 20px 0 var(--blk),
+		24px 20px 0 var(--blk), 28px 20px 0 var(--mos), 32px 20px 0 var(--mos), 36px 20px 0 var(--grn),
+		40px 20px 0 var(--grn), 44px 20px 0 var(--blk), /* Row: 7 */ 0px 24px 0 var(--blk),
+		4px 24px 0 var(--blk), 8px 24px 0 var(--mos), 12px 24px 0 var(--mos),
+		16px 24px 0 var(--blk), 20px 24px 0 var(--wht), 24px 24px 0 var(--gry),
+		28px 24px 0 var(--blk), 32px 24px 0 var(--brw), 36px 24px 0 var(--brw),
+		40px 24px 0 var(--blk), 44px 24px 0 var(--blk),
+		/* Row: 8 */ 0px 28px 0 var(--blk), 4px 28px 0 var(--wht),
+		8px 28px 0 var(--blk), 12px 28px 0 var(--blk), 16px 28px 0 var(--blk),
+		20px 28px 0 var(--gry), 24px 28px 0 var(--gry), 28px 28px 0 var(--blk),
+		32px 28px 0 var(--blk), 36px 28px 0 var(--blk), 40px 28px 0 var(--gry),
+		44px 28px 0 var(--blk), /* Row: 9 */ 4px 32px 0 var(--blk),
+		8px 32px 0 var(--wht), 12px 32px 0 var(--wht), 16px 32px 0 var(--wht),
+		20px 32px 0 var(--blk), 24px 32px 0 var(--blk), 28px 32px 0 var(--gry),
+		32px 32px 0 var(--gry), 36px 32px 0 var(--gry), 40px 32px 0 var(--blk),
+		/* Row: 10 */ 4px 36px 0 var(--blk), 8px 36px 0 var(--gry),
+		12px 36px 0 var(--wht), 16px 36px 0 var(--wht), 20px 36px 0 var(--wht),
+		24px 36px 0 var(--gry), 28px 36px 0 var(--gry), 32px 36px 0 var(--gry),
+		36px 36px 0 var(--gry), 40px 36px 0 var(--blk),
+		/* Row: 11 */ 8px 40px 0 var(--blk), 12px 40px 0 var(--blk),
+		16px 40px 0 var(--gry), 20px 40px 0 var(--gry), 24px 40px 0 var(--gry),
+		28px 40px 0 var(--gry), 32px 40px 0 var(--blk), 36px 40px 0 var(--blk),
+		/* Row: 12 */ 16px 44px 0 var(--blk), 20px 44px 0 var(--blk),
+		24px 44px 0 var(--blk), 28px 44px 0 var(--blk);
+}
