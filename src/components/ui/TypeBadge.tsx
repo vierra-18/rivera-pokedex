@@ -1,10 +1,11 @@
 import React from "react";
+import { PokemonTypeName } from "../../utils/types"; // Adjust the import path as needed
 
 interface TypeBadgeProps {
-	typeName: keyof typeof typeColors; // Ensure typeName is a valid key in typeColors
+	typeName: PokemonTypeName;
 }
 
-const typeColors = {
+const typeColors: Record<PokemonTypeName, string> = {
 	normal: "#a8a878",
 	fire: "#f08030",
 	fighting: "#c03028",
@@ -23,7 +24,7 @@ const typeColors = {
 	dark: "#705848",
 	steel: "#b8b8d0",
 	fairy: "#ffb7fa",
-} as const;
+};
 
 const lightenColor = (color: string, percent: number) => {
 	const num = parseInt(color.replace("#", ""), 16);
@@ -33,10 +34,12 @@ const lightenColor = (color: string, percent: number) => {
 	const B = (num & 0x00ff) + amt;
 	return (
 		"#" +
-		(0x1000000 +
+		(
+			0x1000000 +
 			(R < 255 ? (R < 1 ? 0 : R) : 255) * 0x10000 +
 			(G < 255 ? (G < 1 ? 0 : G) : 255) * 0x100 +
-			(B < 255 ? (B < 1 ? 0 : B) : 255))
+			(B < 255 ? (B < 1 ? 0 : B) : 255)
+		)
 			.toString(16)
 			.slice(1)
 	);
@@ -50,17 +53,18 @@ const darkenColor = (color: string, percent: number) => {
 	const B = (num & 0x00ff) - amt;
 	return (
 		"#" +
-		(0x1000000 +
+		(
+			0x1000000 +
 			(R < 255 ? (R < 1 ? 0 : R) : 255) * 0x10000 +
 			(G < 255 ? (G < 1 ? 0 : G) : 255) * 0x100 +
-			(B < 255 ? (B < 1 ? 0 : B) : 255))
+			(B < 255 ? (B < 1 ? 0 : B) : 255)
+		)
 			.toString(16)
 			.slice(1)
 	);
 };
 
 const TypeBadge: React.FC<TypeBadgeProps> = ({ typeName }) => {
-	// Type assertion to ensure the typeName is a valid key
 	const backgroundColor = typeColors[typeName] || "#ddd";
 	const borderTopColor = lightenColor(backgroundColor, 15);
 	const borderBottomColor = darkenColor(backgroundColor, 15);
@@ -79,7 +83,11 @@ const TypeBadge: React.FC<TypeBadgeProps> = ({ typeName }) => {
 		margin: ".1em",
 	};
 
-	return <div className="text-[.8rem]" style={style}>{typeName}</div>;
+	return (
+		<div className="text-[.8rem]" style={style}>
+			{typeName}
+		</div>
+	);
 };
 
 export default TypeBadge;
