@@ -75,16 +75,15 @@ const TypeBadge: React.FC<TypeBadgeProps> = ({ typeName }) => {
 		borderBottomColor,
 		color: "#fff",
 		textTransform: "uppercase" as const,
-		padding: ".2em .4em",
+		padding: ".3em .4em",
 		borderRadius: ".4em",
 		textAlign: "center" as const,
 		width: "6em",
-		display: "inline-block",
 		margin: ".1em",
 	};
 
 	return (
-		<div className="text-[.8rem]" style={style}>
+		<div className="text-[.8rem] flex justify-center items-center" style={style}>
 			{typeName}
 		</div>
 	);
