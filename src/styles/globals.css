@@ -44,6 +44,29 @@
 	}
 }
 
+
+@keyframes shakeBall {
+	20% {
+	  transform: translate(-5px, 0) rotate(-15deg);
+	}
+  
+	30% {
+	  transform: translate(5px, 0) rotate(15deg);
+	}
+  
+	50% {
+	  transform: translate(-5px, 0) rotate(-5deg);
+	}
+  
+	60% {
+	  transform: translate(5px, 0) rotate(5deg);
+	}
+  
+	100% {
+	  transform: translate(0, 0) rotate(0);
+	}
+  }
+
 @keyframes rotateBall {
 	0% {
 		transform: rotate(0deg);
@@ -67,10 +90,42 @@ html,
 body {
 	/* font-family: "Montserrat", sans-serif; */
 	font-family: "Trebuchet MS";
-
+	background-color: #2c2c2c;
 	margin: 0;
 	height: 100%;
 	width: 100%;
+	color: #f8f8f8;
+}
+
+.montserrat {
+	font-family: "Montserrat", sans-serif;
+}
+
+@keyframes moveGradient {
+	from {
+		background-position: 0 50%;
+	}
+	to {
+		background-position: 100% 50%;
+	}
+}
+
+.gradient-2 {
+	background: linear-gradient(
+		75deg,
+		#2b22d8b0,
+		#2b22d8b0,
+		#0969e7b0,
+		#0969e7b0,
+		#0fa8f5b0,
+		#0fa8f5b0,
+		#0969e7b0,
+		#0969e7b0,
+		#2b22d8b0,
+		#2b22d8b0
+	);
+	background-size: 750% 750%;
+	animation: moveGradient 20s linear infinite;
 }
 
 #loading {
@@ -92,7 +147,14 @@ body {
 	height: 4px;
 	transform-origin: 0px 0px;
 	animation: none;
-	scale: 0.4;
+	scale: 0.7;
+}
+.pokeball.shake {
+	width: 4px;
+	height: 4px;
+	transform-origin: 24px 24px;
+	animation: shakeBall 1.5s infinite linear;
+	scale: 0.7;
 }
 .pokeball#normal {
 	box-shadow: 
@@ -332,3 +394,71 @@ body {
 		/* Row: 12 */ 16px 44px 0 var(--blk), 20px 44px 0 var(--blk),
 		24px 44px 0 var(--blk), 28px 44px 0 var(--blk);
 }
+
+.sidebar {
+	background: rgb(80, 255, 77);
+	background: linear-gradient(
+		0deg,
+		rgba(80, 255, 77, 1) 0%,
+		rgba(17, 246, 171, 0.19015528574711138) 100%
+	);
+}
+
+/* From Uiverse.io by Creatlydev */
+.hamburger .icon-menu {
+	--gap: 5px;
+	--height-bar: 2.5px;
+	--pos-y-bar-one: 0;
+	--pos-y-bar-three: 0;
+	--scale-bar: 1;
+	--rotate-bar-one: 0;
+	--rotate-bar-three: 0;
+	width: 25px;
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap);
+	cursor: pointer;
+	position: relative;
+}
+
+.hamburger .bar {
+	position: relative;
+	height: var(--height-bar);
+	width: 100%;
+	border-radius: 0.5rem;
+	background-color: #f8f8f8;
+}
+
+.hamburger .bar--1 {
+	top: var(--pos-y-bar-one);
+	transform: rotate(var(--rotate-bar-one));
+	transition: top 200ms 100ms, transform 100ms;
+}
+
+.hamburger .bar--2 {
+	transform: scaleX(var(--scale-bar));
+	transition: transform 150ms 100ms;
+}
+
+.hamburger .bar--3 {
+	bottom: var(--pos-y-bar-three);
+	transform: rotate(var(--rotate-bar-three));
+	transition: bottom 200ms 100ms, transform 100ms;
+}
+
+.hamburger .check-icon:checked + .icon-menu > .bar--1 {
+	transition: top 200ms, transform 200ms 100ms;
+}
+
+.hamburger .check-icon:checked + .icon-menu > .bar--3 {
+	transition: bottom 200ms, transform 200ms 100ms;
+}
+
+.hamburger .check-icon:checked + .icon-menu {
+	--pos-y-bar-one: calc(var(--gap) + var(--height-bar));
+	--pos-y-bar-three: calc(var(--gap) + var(--height-bar));
+	--scale-bar: 0;
+	--rotate-bar-one: 45deg;
+	--rotate-bar-three: -45deg;
+}
+/* FIN ICON-MENU */

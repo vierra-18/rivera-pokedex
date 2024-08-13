@@ -3,9 +3,13 @@ import { usePokemon } from "../hooks/usePokemon";
 import Loader from "@/components/Loader";
 import PokemonList from "@/components/PokemonList";
 import AnimatedPokeballs from "@/components/ui/AnimtedPokeballs";
+import Topbar from "@/components/Topbar";
+import Sidebar from "@/components/Sidebar";
+import Captured from "@/components/CapturedPokemon";
 
 const Home = () => {
 	const [searchQuery, setSearchQuery] = useState("");
+	const [isGrid, setIsGrid] = useState(true);
 	const [page, setPage] = useState(0);
 	const limit = 12;
 	const offset = page * limit;
@@ -34,52 +38,68 @@ const Home = () => {
 		console.log(isLoading, "loading");
 	}, [isLoading]);
 
+	const [isPokedex, setIsPokedex] = useState<boolean>(true);
+
+	// Handle the click event from Sidebar
+	const handleSidebarClick = (isPokedex: boolean) => {
+		setIsPokedex(isPokedex);
+	};
+
 	return (
 		<div className=" w-screen min-h-screen flex">
-			<div className=" min-w-[25%] p-5"></div>
-			<div className="p-5 flex-1 max-h-screen overflow-y-scroll">
-				<h1 className="text-3xl font-bold mb-4">Pokédex</h1>
-				<input
-					type="text"
-					placeholder="Search Pokémon"
-					value={searchQuery}
-					onChange={handleSearchChange}
-					className="mb-4 p-2 border border-gray-300 rounded w-full"
-				/>
-				{isLoading ||
-					(isFetching && (
-						<div className="relative flex justify-center items-center dshow-guie min-h-[62vh]">
-							<div className="absolute scale-[1] ">
-								<AnimatedPokeballs />
-							</div>
-						</div>
-					))}
-				{isError && <p>Error: {error.message}</p>}
-				{!isLoading && !isFetching && pokemonData && (
-					<div className="min-h-[60vh]">
-						<PokemonList
-							pokemonData={pokemonData}
-							// onPokemonClick={handlePokemonClick}
+			<Sidebar onPokedexClick={handleSidebarClick} />
+			<div className="p flex-1 max-h-screen overflow-y-scroll">
+				<Topbar title={!isPokedex ? "Captured" : ""} />
+				<div className="p-5">
+					{isPokedex && (
+						<input
+							type="text"
+							placeholder="Search Pokémon"
+							value={searchQuery}
+							onChange={handleSearchChange}
+							className="mb-4 p-2 border border-gray-300 bg-transparent rounded w-1/4"
 						/>
-					</div>
-				)}
-				{searchQuery == "" && (
-					<div className="mt-4 flex justify-center gap-4">
-						<button
-							onClick={handlePrev}
-							disabled={page === 0}
-							className="bg-gray-500 w-20 text-white p-2 rounded disabled:opacity-50"
-						>
-							Previous
-						</button>
-						<button
-							onClick={handleNext}
-							className="bg-blue-500 w-20 text-white p-2 rounded"
-						>
-							Next
-						</button>
-					</div>
-				)}
+					)}
+					{isLoading ||
+						(isFetching && (
+							<div className="relative flex justify-center items-center dshow-guie min-h-[62vh]">
+								<div className="absolute scale-[.7] ">
+									<AnimatedPokeballs />
+								</div>
+							</div>
+						))}
+					{isError && <p>Error: {error.message}</p>}
+					{!isLoading && !isFetching && pokemonData && (
+						<div className="min-h-[60vh]">
+							{isPokedex ? (
+								<PokemonList
+									isGrid={isGrid}
+									pokemonData={pokemonData}
+									// onPokemonClick={handlePokemonClick}
+								/>
+							) : (
+								<Captured />
+							)}
+						</div>
+					)}
+					{isPokedex && searchQuery == "" && (
+						<div className="mt-4 flex justify-center gap-4">
+							<button
+								onClick={handlePrev}
+								disabled={page === 0}
+								className="bg-gray-500 w-20 text-white p-2 rounded disabled:opacity-50"
+							>
+								Previous
+							</button>
+							<button
+								onClick={handleNext}
+								className="bg-blue-500 w-20 text-white p-2 rounded"
+							>
+								Next
+							</button>
+						</div>
+					)}
+				</div>
 			</div>
 		</div>
 	);

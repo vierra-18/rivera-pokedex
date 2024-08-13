@@ -12,8 +12,8 @@ const TypeAdvantage: React.FC<TypeAdvantageProps> = ({
 	strengths,
 }) => {
 	return (
-		<div>
-			{weaknesses && <h3 className="text-xl font-semibold">Weak Against:</h3>}
+		<div className="my-1">
+			{/* {weaknesses && <h3 className="text-xl font-semibold">Weak Against:</h3>} */}
 			{weaknesses && weaknesses.length > 0 ? (
 				<div className="flex flex-wrap">
 					{weaknesses.map((type) => (
@@ -23,9 +23,9 @@ const TypeAdvantage: React.FC<TypeAdvantageProps> = ({
 			) : (
 				<></>
 			)}
-			{strengths && (
+			{/* {strengths && (
 				<h3 className="text-xl font-semibold">Strong Against:</h3>
-			)}
+			)} */}
 			{strengths && strengths.length > 0 ? (
 				<div className="flex flex-wrap">
 					{strengths.map((type) => (
