@@ -9,7 +9,6 @@ import Captured from "@/components/CapturedPokemon";
 
 const Home = () => {
 	const [searchQuery, setSearchQuery] = useState("");
-	const [isGrid, setIsGrid] = useState(true);
 	const [page, setPage] = useState(0);
 	const limit = 12;
 	const offset = page * limit;
@@ -45,11 +44,25 @@ const Home = () => {
 		setIsPokedex(isPokedex);
 	};
 
+	const [isListView, setIsListView] = useState(true);
+
+	const handleViewToggle = (viewState: boolean) => {
+		setIsListView(viewState);
+		console.log(
+			`View state updated in GrandparentComponent: ${
+				viewState ? "List View" : "Grid View"
+			}`
+		);
+	};
+
 	return (
 		<div className=" w-screen min-h-screen flex">
 			<Sidebar onPokedexClick={handleSidebarClick} />
 			<div className="p flex-1 max-h-screen overflow-y-scroll">
-				<Topbar title={!isPokedex ? "Captured" : ""} />
+				<Topbar
+					onViewToggle={handleViewToggle}
+					title={!isPokedex ? "Captured" : ""}
+				/>
 				<div className="p-5">
 					{isPokedex && (
 						<input
@@ -57,7 +70,7 @@ const Home = () => {
 							placeholder="Search Pokémon"
 							value={searchQuery}
 							onChange={handleSearchChange}
-							className="mb-4 p-2 border border-gray-300 bg-transparent rounded w-1/4"
+							className="mb-4 p-2 border border-gray-300 bg-transparent rounded lg:w-1/4"
 						/>
 					)}
 					{isLoading ||
@@ -73,12 +86,12 @@ const Home = () => {
 						<div className="min-h-[60vh]">
 							{isPokedex ? (
 								<PokemonList
-									isGrid={isGrid}
+									isGrid={isListView}
 									pokemonData={pokemonData}
 									// onPokemonClick={handlePokemonClick}
 								/>
 							) : (
-								<Captured />
+								<Captured isGrid={isListView} />
 							)}
 						</div>
 					)}

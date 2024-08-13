@@ -36,7 +36,7 @@ export const getCapturedPokemons = (): CapturedPokemon[] => {
 interface CapturedProps {
 	isGrid?: boolean; // Make isGrid optional
 }
-const Captured: React.FC<CapturedProps> = ({ isGrid = true }) => {
+const Captured: React.FC<CapturedProps> = ({ isGrid }) => {
 	const [capturedPokemons, setCapturedPokemons] = useState<CapturedPokemon[]>(
 		[]
 	);

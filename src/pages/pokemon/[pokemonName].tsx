@@ -9,6 +9,7 @@ import RadarChart from "@/components/ui/RadarChart"; // Import the RadarChart co
 import HorizontalBarChart from "@/components/ui/HorizontalChart";
 import { useWindowSize } from "@uidotdev/usehooks";
 import CaptureForm from "@/components/CaptureForm";
+import Link from "next/link";
 
 type Pokemon = {
 	id: number;
@@ -62,7 +63,13 @@ const PokemonPage = () => {
 
 	console.log(pokemon);
 	return (
-		<div className="flex items-center justify-center  py-20 min-h-screen !overflow-x-hidden flex-col gap-5 montserrat">
+		<div className="flex relative items-center justify-center  py-20 min-h-screen !overflow-x-hidden flex-col gap-5 montserrat">
+			<Link
+				href={"/"}
+				className="border border-l-0 absolute top-0 left-0 m-5 px-4 py-2  flex items-center outline-none leading-6  before:bg-white before:content-[''] before:inline-block before:h-[1px] before:mr-[10px] before:transition-all before:ease-[cubic-bezier(.25,.8,.25,1)] before:duration-[.42s] before:w-0 before:hover:bg-white before:hover:w-12 uppercase font-bold rounded-md text-sm"
+			>
+				Back
+			</Link>
 			<div className="sm:max-w-[50vw] max-w-[80vw] flex flex-col gap-5">
 				<div className="flex justify-center h-[25vh] relative items-center rounded-md border border-gray-500/70 gradient-2">
 					<Image
