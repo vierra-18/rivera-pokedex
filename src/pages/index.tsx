@@ -44,9 +44,13 @@ const Home = () => {
 	// Handle the click event from Sidebar
 	const handleSidebarClick = (isPokedex: boolean) => {
 		setIsPokedex(isPokedex);
-		setTimeout(() => {
-			setIsCollapsed(true);
-		}, 200);
+		{
+			size.width &&
+				size.width <= 640 &&
+				setTimeout(() => {
+					setIsCollapsed(true);
+				}, 200);
+		}
 	};
 
 	const [isListView, setIsListView] = useState(true);

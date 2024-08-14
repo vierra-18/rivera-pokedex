@@ -101,7 +101,7 @@ const Captured: React.FC<CapturedProps> = ({ isGrid }) => {
 									alt="pokeball"
 									className={`absolute invert opacity-5 ${
 										isGrid
-											? "scale-[1.5] "
+											? "scale-[1.5] sm:scale-100 sm:w-60"
 											: "w-44  -top-3 -left-5 rotate-[30deg]"
 									} sm:scale-[.85] sm:-top-5 sm:-left-20 -bottom-5 -right-5 sm:rotate-[30deg] rotate-[-25deg]`}
 								/>
