@@ -13,6 +13,7 @@ const Home = () => {
 	const [page, setPage] = useState(0);
 	const limit = 12;
 	const offset = page * limit;
+	const size = useWindowSize();
 
 	const {
 		data: pokemonData,
@@ -43,6 +44,9 @@ const Home = () => {
 	// Handle the click event from Sidebar
 	const handleSidebarClick = (isPokedex: boolean) => {
 		setIsPokedex(isPokedex);
+		setTimeout(() => {
+			setIsCollapsed(true);
+		}, 200);
 	};
 
 	const [isListView, setIsListView] = useState(true);
@@ -55,11 +59,12 @@ const Home = () => {
 	const handleCollapseToggle = (collapseState: boolean) => {
 		setIsCollapsed(collapseState);
 	};
-	const size = useWindowSize();
 
 	useEffect(() => {
 		if (size.width && size.width > 1023) {
 			setIsCollapsed(false);
+		} else {
+			setIsCollapsed(true);
 		}
 	}, [size.width]);
 
