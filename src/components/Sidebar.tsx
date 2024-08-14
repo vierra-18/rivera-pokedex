@@ -7,10 +7,11 @@ import Pokeball from "../styles/assets/pokeball-1.svg";
 
 // Define the type for the props
 interface SidebarProps {
+	isCollapsed: boolean;
 	onPokedexClick: (isPokedex: boolean) => void;
 }
 
-const Sidebar: FC<SidebarProps> = ({ onPokedexClick }) => {
+const Sidebar: FC<SidebarProps> = ({ onPokedexClick, isCollapsed }) => {
 	const [isPokedex, setIsPokedex] = useState<boolean>(true);
 
 	const handlePokedexClick = () => {
@@ -24,15 +25,26 @@ const Sidebar: FC<SidebarProps> = ({ onPokedexClick }) => {
 	};
 
 	return (
-		<div className="max-w-[20rem] min-w-[20rem] w-1/5 flex-col hidden lg:flex py-5 border-l-2 border-l-green-900 sidebar">
-			<section className="w-full h-1/2 px-2">
+		<div
+			className={`${
+				isCollapsed
+					? "max-w-[0rem] min-w-[0rem] w-0"
+					: "max-w-[20rem] min-w-[20rem] w-1/5"
+			} transition-all  absolute lg:relative h-screen z-[9999] overflow-hidden duration-200 flex-col lg:flex py-5 border-l-2 border-l-green-900 bg-[#202020]`}
+		>
+			<div className="absolute h-full w-full  sidebar top-0"></div>
+			<section className="w-full h-1/2 px-2 ">
 				<div className="w-full h-20 relative flex justify-start gap-2">
-					<Image src={Batman} alt="avatar batman" className="h-20 w-fit" />
-					<div className="flex flex-col h-full justify-center">
-						<span className="capitalize text-2xl font-semibold tracking-wide">
+					<Image
+						src={Batman}
+						alt="avatar batman"
+						className="min-h-20 w-fit shrink-0"
+					/>
+					<div className="flex flex-col h-full justify-center flex-nowrap">
+						<span className="capitalize text-2xl font-semibold tracking-wide text-nowrap">
 							robin rivera
 						</span>
-						<span className="capitalize opacity-40 text-sm">
+						<span className="capitalize opacity-40 text-sm text-nowrap">
 							Pokémon master
 						</span>
 					</div>

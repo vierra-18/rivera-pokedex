@@ -48,19 +48,29 @@ const Home = () => {
 
 	const handleViewToggle = (viewState: boolean) => {
 		setIsListView(viewState);
-		console.log(
-			`View state updated in GrandparentComponent: ${
-				viewState ? "List View" : "Grid View"
-			}`
-		);
+	};
+	const [isCollapsed, setIsCollapsed] = useState(true);
+
+	const handleCollapseToggle = (collapseState: boolean) => {
+		setIsCollapsed(collapseState);
 	};
 
+
+
 	return (
-		<div className=" w-screen min-h-screen flex">
-			<Sidebar onPokedexClick={handleSidebarClick} />
-			<div className="p flex-1 max-h-screen overflow-y-scroll">
+		<div className=" w-screen min-h-screen flex relative">
+			<Sidebar onPokedexClick={handleSidebarClick} isCollapsed={isCollapsed} />
+			<div
+				className="p flex-1 max-h-screen overflow-y-scroll"
+				onClick={() => {
+					setIsCollapsed(true)
+					console.log(isCollapsed);
+				}}
+			>
 				<Topbar
 					onViewToggle={handleViewToggle}
+					onCollapseToggle={handleCollapseToggle}
+					expanded={isCollapsed}
 					title={!isPokedex ? "Captured" : ""}
 				/>
 				<div className="p-5">
