@@ -6,12 +6,14 @@ import AnimatedPokeballs from "@/components/ui/AnimtedPokeballs";
 import Topbar from "@/components/Topbar";
 import Sidebar from "@/components/Sidebar";
 import Captured from "@/components/CapturedPokemon";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 const Home = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [page, setPage] = useState(0);
 	const limit = 12;
 	const offset = page * limit;
+	const size = useWindowSize();
 
 	const {
 		data: pokemonData,
@@ -42,25 +44,46 @@ const Home = () => {
 	// Handle the click event from Sidebar
 	const handleSidebarClick = (isPokedex: boolean) => {
 		setIsPokedex(isPokedex);
+		setTimeout(() => {
+			setIsCollapsed(true);
+		}, 200);
 	};
 
 	const [isListView, setIsListView] = useState(true);
 
 	const handleViewToggle = (viewState: boolean) => {
 		setIsListView(viewState);
-		console.log(
-			`View state updated in GrandparentComponent: ${
-				viewState ? "List View" : "Grid View"
-			}`
-		);
+	};
+	const [isCollapsed, setIsCollapsed] = useState(false);
+
+	const handleCollapseToggle = (collapseState: boolean) => {
+		setIsCollapsed(collapseState);
 	};
 
+	useEffect(() => {
+		if (size.width && size.width > 1023) {
+			setIsCollapsed(false);
+		} else {
+			setIsCollapsed(true);
+		}
+	}, [size.width]);
+
 	return (
-		<div className=" w-screen min-h-screen flex">
-			<Sidebar onPokedexClick={handleSidebarClick} />
-			<div className="p flex-1 max-h-screen overflow-y-scroll">
+		<div className=" w-screen min-h-screen flex relative">
+			<Sidebar onPokedexClick={handleSidebarClick} isCollapsed={isCollapsed} />
+			<div
+				className="p flex-1 max-h-screen overflow-y-scroll"
+				onClick={() => {
+					if (size.width && size.width < 1023) {
+						setIsCollapsed(true);
+						console.log(isCollapsed);
+					}
+				}}
+			>
 				<Topbar
 					onViewToggle={handleViewToggle}
+					onCollapseToggle={handleCollapseToggle}
+					expanded={isCollapsed}
 					title={!isPokedex ? "Captured" : ""}
 				/>
 				<div className="p-5">

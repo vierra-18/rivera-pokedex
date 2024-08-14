@@ -5,7 +5,7 @@ interface GridListProps {
 }
 
 const GridList: React.FC<GridListProps> = ({ onViewToggle }) => {
-	const [isListView, setIsListView] = useState(false);
+	const [isListView, setIsListView] = useState(true);
 
 	const toggleView = () => {
 		const newViewState = !isListView;
