@@ -1,34 +1,43 @@
-import { useState } from "react";
+import React from "react";
 import Hamburger from "./ui/Hamburger";
 import GridList from "./ui/GridList";
-import exp from "constants";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 interface TopbarProps {
 	title?: string;
 	onViewToggle: (isListView: boolean) => void;
 	onCollapseToggle: (isCollapsed: boolean) => void;
-	expanded?: any;
+	expanded?: boolean;
 }
 
 const Topbar: React.FC<TopbarProps> = ({
 	onViewToggle,
 	onCollapseToggle,
-	title,
-	expanded,
+	title = "Pokédex", // Default title if none provided
+	expanded = false, // Default expanded state if none provided
 }) => {
+	const size = useWindowSize();
+
 	const handleViewToggle = (viewState: boolean) => {
 		onViewToggle(viewState);
 	};
+
 	const handleCollapseToggle = (collapseState: boolean) => {
 		onCollapseToggle(collapseState);
 	};
+
 	return (
-		<div className=" p-5 h-20 border-b flex items-center justify-between border-gray-500/20">
+		<div className="p-5 h-20 border-b flex items-center justify-between border-gray-500/20">
 			<Hamburger onCollapseToggle={handleCollapseToggle} expanded={expanded} />
 
 			<span className="text-3xl font-bold text-center">
 				{title || "Pokédex"}
 			</span>
+			{/* {size.width && size.width >= 640 ? (
+				<GridList onViewToggle={handleViewToggle} />
+			) : (
+				<div className="p-3"></div>
+			)} */}
 			<GridList onViewToggle={handleViewToggle} />
 		</div>
 	);

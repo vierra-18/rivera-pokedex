@@ -6,12 +6,14 @@ import AnimatedPokeballs from "@/components/ui/AnimtedPokeballs";
 import Topbar from "@/components/Topbar";
 import Sidebar from "@/components/Sidebar";
 import Captured from "@/components/CapturedPokemon";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 const Home = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [page, setPage] = useState(0);
 	const limit = 12;
 	const offset = page * limit;
+	const size = useWindowSize();
 
 	const {
 		data: pokemonData,
@@ -42,6 +44,9 @@ const Home = () => {
 	// Handle the click event from Sidebar
 	const handleSidebarClick = (isPokedex: boolean) => {
 		setIsPokedex(isPokedex);
+		setTimeout(() => {
+			setIsCollapsed(true);
+		}, 200);
 	};
 
 	const [isListView, setIsListView] = useState(true);
@@ -55,7 +60,13 @@ const Home = () => {
 		setIsCollapsed(collapseState);
 	};
 
-
+	useEffect(() => {
+		if (size.width && size.width > 1023) {
+			setIsCollapsed(false);
+		} else {
+			setIsCollapsed(true);
+		}
+	}, [size.width]);
 
 	return (
 		<div className=" w-screen min-h-screen flex relative">
@@ -63,7 +74,7 @@ const Home = () => {
 			<div
 				className="p flex-1 max-h-screen overflow-y-scroll"
 				onClick={() => {
-					setIsCollapsed(true)
+					setIsCollapsed(true);
 					console.log(isCollapsed);
 				}}
 			>

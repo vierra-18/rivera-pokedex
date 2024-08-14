@@ -80,10 +80,11 @@ const TypeBadge: React.FC<TypeBadgeProps> = ({ typeName }) => {
 		textAlign: "center" as const,
 		width: "6em",
 		margin: ".1em",
+		
 	};
 
 	return (
-		<div className="text-[.8rem] flex justify-center items-center" style={style}>
+		<div className="sm:text-[.8rem] text-[.6rem] flex justify-center items-center" style={style}>
 			{typeName}
 		</div>
 	);
