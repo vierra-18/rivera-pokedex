@@ -6,6 +6,7 @@ import AnimatedPokeballs from "@/components/ui/AnimtedPokeballs";
 import Topbar from "@/components/Topbar";
 import Sidebar from "@/components/Sidebar";
 import Captured from "@/components/CapturedPokemon";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 const Home = () => {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -54,8 +55,13 @@ const Home = () => {
 	const handleCollapseToggle = (collapseState: boolean) => {
 		setIsCollapsed(collapseState);
 	};
+	const size = useWindowSize();
 
-
+	useEffect(() => {
+		if (size.width && size.width > 1023) {
+			setIsCollapsed(false);
+		}
+	}, [size.width]);
 
 	return (
 		<div className=" w-screen min-h-screen flex relative">
@@ -63,8 +69,10 @@ const Home = () => {
 			<div
 				className="p flex-1 max-h-screen overflow-y-scroll"
 				onClick={() => {
-					setIsCollapsed(true)
-					console.log(isCollapsed);
+					if (size.width && size.width < 1023) {
+						setIsCollapsed(true);
+						console.log(isCollapsed);
+					}
 				}}
 			>
 				<Topbar
