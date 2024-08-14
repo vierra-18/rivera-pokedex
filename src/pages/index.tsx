@@ -49,7 +49,7 @@ const Home = () => {
 	const handleViewToggle = (viewState: boolean) => {
 		setIsListView(viewState);
 	};
-	const [isCollapsed, setIsCollapsed] = useState(true);
+	const [isCollapsed, setIsCollapsed] = useState(false);
 
 	const handleCollapseToggle = (collapseState: boolean) => {
 		setIsCollapsed(collapseState);
