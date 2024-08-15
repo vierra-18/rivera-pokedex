@@ -54,14 +54,106 @@
 
 	30% {
 		transform: translate(5px, 0) rotate(15deg);
+
+		box-shadow: 
+		/* Row: 1 */ 16px 0 0 var(--blk), 20px 0 0 var(--blk),
+			24px 0 0 var(--blk), 28px 0 0 var(--blk),
+			/* Row: 2 */ 8px 4px 0 var(--blk), 12px 4px 0 var(--blk),
+			16px 4px 0 var(--red), 20px 4px 0 var(--red), 24px 4px 0 var(--red),
+			28px 4px 0 var(--red), 32px 4px 0 var(--blk), 36px 4px 0 var(--blk),
+			/* Row: 3 */ 4px 8px 0 var(--blk), 8px 8px 0 var(--red),
+			12px 8px 0 var(--red), 16px 8px 0 var(--wht), 20px 8px 0 var(--red),
+			24px 8px 0 var(--red), 28px 8px 0 var(--red), 32px 8px 0 var(--red),
+			36px 8px 0 var(--red), 40px 8px 0 var(--blk),
+			/* Row: 4 */ 4px 12px 0 var(--blk), 8px 12px 0 var(--red),
+			12px 12px 0 var(--wht), 16px 12px 0 var(--wht), 20px 12px 0 var(--wht),
+			24px 12px 0 var(--red), 28px 12px 0 var(--red), 32px 12px 0 var(--red),
+			36px 12px 0 var(--red), 40px 12px 0 var(--blk),
+			/* Row: 5 */ 0px 16px 0 var(--blk), 4px 16px 0 var(--red),
+			8px 16px 0 var(--red), 12px 16px 0 var(--red), 16px 16px 0 var(--wht),
+			20px 16px 0 var(--red), 24px 16px 0 var(--red), 28px 16px 0 var(--red),
+			32px 16px 0 var(--red), 36px 16px 0 var(--red), 40px 16px 0 var(--red),
+			44px 16px 0 var(--blk), /* Row: 6 */ 0px 20px 0 var(--blk),
+			4px 20px 0 var(--red), 8px 20px 0 var(--red), 12px 20px 0 var(--red),
+			16px 20px 0 var(--red), 20px 20px 0 var(--blk), 24px 20px 0 var(--blk),
+			28px 20px 0 var(--red), 32px 20px 0 var(--red), 36px 20px 0 var(--red),
+			40px 20px 0 var(--red), 44px 20px 0 var(--blk),
+			/* Row: 7 */ 0px 24px 0 var(--blk), 4px 24px 0 var(--blk),
+			8px 24px 0 var(--red), 12px 24px 0 var(--red), 16px 24px 0 var(--blk),
+			20px 24px 0 var(--red), 24px 24px 0 var(--red), 28px 24px 0 var(--blk),
+			32px 24px 0 var(--red), 36px 24px 0 var(--red), 40px 24px 0 var(--blk),
+			44px 24px 0 var(--blk), /* Row: 8 */ 0px 28px 0 var(--blk),
+			4px 28px 0 var(--wht), 8px 28px 0 var(--blk), 12px 28px 0 var(--blk),
+			16px 28px 0 var(--blk), 20px 28px 0 var(--red), 24px 28px 0 var(--red),
+			28px 28px 0 var(--blk), 32px 28px 0 var(--blk), 36px 28px 0 var(--blk),
+			40px 28px 0 var(--gry), 44px 28px 0 var(--blk),
+			/* Row: 9 */ 4px 32px 0 var(--blk), 8px 32px 0 var(--wht),
+			12px 32px 0 var(--wht), 16px 32px 0 var(--wht), 20px 32px 0 var(--blk),
+			24px 32px 0 var(--blk), 28px 32px 0 var(--gry), 32px 32px 0 var(--gry),
+			36px 32px 0 var(--gry), 40px 32px 0 var(--blk),
+			/* Row: 10 */ 4px 36px 0 var(--blk), 8px 36px 0 var(--gry),
+			12px 36px 0 var(--wht), 16px 36px 0 var(--wht), 20px 36px 0 var(--wht),
+			24px 36px 0 var(--gry), 28px 36px 0 var(--gry), 32px 36px 0 var(--gry),
+			36px 36px 0 var(--gry), 40px 36px 0 var(--blk),
+			/* Row: 11 */ 8px 40px 0 var(--blk), 12px 40px 0 var(--blk),
+			16px 40px 0 var(--gry), 20px 40px 0 var(--gry), 24px 40px 0 var(--gry),
+			28px 40px 0 var(--gry), 32px 40px 0 var(--blk), 36px 40px 0 var(--blk),
+			/* Row: 12 */ 16px 44px 0 var(--blk), 20px 44px 0 var(--blk),
+			24px 44px 0 var(--blk), 28px 44px 0 var(--blk);
 	}
 
 	50% {
-		transform: translate(-5px, 0) rotate(-5deg);
+		transform: translate(-2px, 0) rotate(-5deg);
 	}
 
 	60% {
-		transform: translate(5px, 0) rotate(5deg);
+		transform: translate(2px, 0) rotate(5deg);
+
+		box-shadow: 
+      /* Row: 1 */ 16px 0 0 var(--blk), 20px 0 0 var(--blk),
+			24px 0 0 var(--blk), 28px 0 0 var(--blk),
+			/* Row: 2 */ 8px 4px 0 var(--blk), 12px 4px 0 var(--blk),
+			16px 4px 0 var(--red), 20px 4px 0 var(--red), 24px 4px 0 var(--red),
+			28px 4px 0 var(--red), 32px 4px 0 var(--blk), 36px 4px 0 var(--blk),
+			/* Row: 3 */ 4px 8px 0 var(--blk), 8px 8px 0 var(--red),
+			12px 8px 0 var(--red), 16px 8px 0 var(--wht), 20px 8px 0 var(--red),
+			24px 8px 0 var(--red), 28px 8px 0 var(--red), 32px 8px 0 var(--red),
+			36px 8px 0 var(--red), 40px 8px 0 var(--blk),
+			/* Row: 4 */ 4px 12px 0 var(--blk), 8px 12px 0 var(--red),
+			12px 12px 0 var(--wht), 16px 12px 0 var(--wht), 20px 12px 0 var(--wht),
+			24px 12px 0 var(--red), 28px 12px 0 var(--red), 32px 12px 0 var(--red),
+			36px 12px 0 var(--red), 40px 12px 0 var(--blk),
+			/* Row: 5 */ 0px 16px 0 var(--blk), 4px 16px 0 var(--red),
+			8px 16px 0 var(--red), 12px 16px 0 var(--red), 16px 16px 0 var(--wht),
+			20px 16px 0 var(--red), 24px 16px 0 var(--red), 28px 16px 0 var(--red),
+			32px 16px 0 var(--red), 36px 16px 0 var(--red), 40px 16px 0 var(--red),
+			44px 16px 0 var(--blk), /* Row: 6 */ 0px 20px 0 var(--blk),
+			4px 20px 0 var(--red), 8px 20px 0 var(--red), 12px 20px 0 var(--red),
+			16px 20px 0 var(--red), 20px 20px 0 var(--blk), 24px 20px 0 var(--blk),
+			28px 20px 0 var(--red), 32px 20px 0 var(--red), 36px 20px 0 var(--red),
+			40px 20px 0 var(--red), 44px 20px 0 var(--blk),
+			/* Row: 7 */ 0px 24px 0 var(--blk), 4px 24px 0 var(--blk),
+			8px 24px 0 var(--red), 12px 24px 0 var(--red), 16px 24px 0 var(--blk),
+			20px 24px 0 var(--red), 24px 24px 0 var(--red), 28px 24px 0 var(--blk),
+			32px 24px 0 var(--red), 36px 24px 0 var(--red), 40px 24px 0 var(--blk),
+			44px 24px 0 var(--blk), /* Row: 8 */ 0px 28px 0 var(--blk),
+			4px 28px 0 var(--wht), 8px 28px 0 var(--blk), 12px 28px 0 var(--blk),
+			16px 28px 0 var(--blk), 20px 28px 0 var(--red), 24px 28px 0 var(--red),
+			28px 28px 0 var(--blk), 32px 28px 0 var(--blk), 36px 28px 0 var(--blk),
+			40px 28px 0 var(--gry), 44px 28px 0 var(--blk),
+			/* Row: 9 */ 4px 32px 0 var(--blk), 8px 32px 0 var(--wht),
+			12px 32px 0 var(--wht), 16px 32px 0 var(--wht), 20px 32px 0 var(--blk),
+			24px 32px 0 var(--blk), 28px 32px 0 var(--gry), 32px 32px 0 var(--gry),
+			36px 32px 0 var(--gry), 40px 32px 0 var(--blk),
+			/* Row: 10 */ 4px 36px 0 var(--blk), 8px 36px 0 var(--gry),
+			12px 36px 0 var(--wht), 16px 36px 0 var(--wht), 20px 36px 0 var(--wht),
+			24px 36px 0 var(--gry), 28px 36px 0 var(--gry), 32px 36px 0 var(--gry),
+			36px 36px 0 var(--gry), 40px 36px 0 var(--blk),
+			/* Row: 11 */ 8px 40px 0 var(--blk), 12px 40px 0 var(--blk),
+			16px 40px 0 var(--gry), 20px 40px 0 var(--gry), 24px 40px 0 var(--gry),
+			28px 40px 0 var(--gry), 32px 40px 0 var(--blk), 36px 40px 0 var(--blk),
+			/* Row: 12 */ 16px 44px 0 var(--blk), 20px 44px 0 var(--blk),
+			24px 44px 0 var(--blk), 28px 44px 0 var(--blk);
 	}
 
 	100% {
@@ -466,7 +558,7 @@ body {
 
 * {
 	box-sizing: border-box;
-  }
+}
 
 button.grid-list {
 	-webkit-appearance: none;
@@ -480,63 +572,63 @@ button.grid-list {
 	cursor: pointer;
 }
 
- button.grid-list:focus {
+button.grid-list:focus {
 	outline: 0;
 }
 
- button.grid-list .bar {
+button.grid-list .bar {
 	border: 1px solid #fff;
 	position: absolute;
 }
 
- button.grid-list .bar:nth-child(1) {
+button.grid-list .bar:nth-child(1) {
 	right: 0;
 	top: 0;
 	width: 12px;
 	height: 14px;
 }
 
- button.grid-list .bar:nth-child(2) {
+button.grid-list .bar:nth-child(2) {
 	top: 0;
 	width: 11px;
 	height: 24px;
 }
 
- button.grid-list .bar:nth-child(3) {
+button.grid-list .bar:nth-child(3) {
 	bottom: 0;
 	right: 0;
 	width: 12px;
 	height: 9px;
 }
 
- button.grid-list.list .bar:nth-child(1) {
+button.grid-list.list .bar:nth-child(1) {
 	animation: grid-to-list-1 var(--duration) var(--easing) forwards;
 	right: 0;
 	top: 0;
 }
 
- button.grid-list.list .bar:nth-child(2) {
+button.grid-list.list .bar:nth-child(2) {
 	animation: grid-to-list-2 var(--duration) var(--easing) forwards;
 	left: 0;
 }
 
- button.grid-list.list .bar:nth-child(3) {
+button.grid-list.list .bar:nth-child(3) {
 	animation: grid-to-list-3 var(--duration) var(--easing) forwards;
 	right: 0;
 }
 
- button.grid-list.grid .bar:nth-child(1) {
+button.grid-list.grid .bar:nth-child(1) {
 	animation: list-to-grid-1 var(--duration) var(--easing) forwards;
 	right: 0;
 	top: 0;
 }
 
- button.grid-list.grid .bar:nth-child(2) {
+button.grid-list.grid .bar:nth-child(2) {
 	animation: list-to-grid-2 var(--duration) var(--easing) forwards;
 	left: 0;
 }
 
- button.grid-list.grid .bar:nth-child(3) {
+button.grid-list.grid .bar:nth-child(3) {
 	animation: list-to-grid-3 var(--duration) var(--easing) forwards;
 	right: 0;
 }

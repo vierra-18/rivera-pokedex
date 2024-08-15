@@ -60,14 +60,19 @@ const fetchPokemonData = async (
 			const speciesResponse = await axios.get(pokemonData.species.url);
 			const speciesData = speciesResponse.data;
 
-			// Get the English flavor text entry
-			const flavorTextEntry = speciesData.flavor_text_entries.find(
+			const flavorTexts = speciesData.flavor_text_entries.filter(
 				(entry: { language: { name: string } }) => entry.language.name === "en"
 			);
 
+			// Pick a random flavor text entry
+			const randomFlavorText =
+				flavorTexts[
+					Math.floor(Math.random() * flavorTexts.length)
+				]?.flavor_text || "";
+
 			return {
 				...pokemonData,
-				flavorText: flavorTextEntry ? flavorTextEntry.flavor_text : "",
+				flavorText: randomFlavorText,
 			};
 		}
 	);
