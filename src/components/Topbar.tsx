@@ -3,6 +3,9 @@ import Hamburger from "./ui/Hamburger";
 import GridList from "./ui/GridList";
 import { useWindowSize } from "@uidotdev/usehooks";
 
+import Pokedex from "../styles/assets/pokedex-1.svg";
+
+
 interface TopbarProps {
 	title?: string;
 	onViewToggle: (isListView: boolean) => void;
@@ -28,7 +31,7 @@ const Topbar: React.FC<TopbarProps> = ({
 
 	return (
 		<div className="p-5 h-20 border-b flex items-center justify-between border-gray-500/20">
-			<Hamburger onCollapseToggle={handleCollapseToggle} expanded={expanded} />
+			<Hamburger icon={Pokedex} onCollapseToggle={handleCollapseToggle} expanded={expanded} />
 
 			<span className="text-3xl font-bold text-center">
 				{title || "Pokédex"}
