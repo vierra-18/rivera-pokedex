@@ -8,7 +8,6 @@ import Sidebar from "@/components/Sidebar";
 import Captured from "@/components/CapturedPokemon";
 import { useWindowSize } from "@uidotdev/usehooks";
 
-
 const Home = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [page, setPage] = useState(0);
@@ -27,7 +26,7 @@ const Home = () => {
 
 	useEffect(() => {
 		refetch();
-	},[]);
+	}, []);
 
 	const handleNext = () => setPage((prev) => prev + 1);
 	const handlePrev = () => setPage((prev) => Math.max(prev - 1, 0));
@@ -110,6 +109,7 @@ const Home = () => {
 						<div className="min-h-[60vh]">
 							{isPokedex ? (
 								<PokemonList
+								
 									isGrid={isListView}
 									pokemonData={pokemonData}
 									// onPokemonClick={handlePokemonClick}

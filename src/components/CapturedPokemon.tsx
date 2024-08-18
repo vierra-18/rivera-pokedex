@@ -72,6 +72,8 @@ const Captured: React.FC<CapturedProps> = ({ isGrid }) => {
 		},
 	};
 
+	console.log(capturedPokemons);
+
 	return (
 		<div className="">
 			{/* <h1 className="text-3xl font-bold mb-4">Captured Pokémon</h1> */}

@@ -30,10 +30,14 @@ const Sidebar: FC<SidebarProps> = ({ onPokedexClick, isCollapsed }) => {
 				isCollapsed
 					? "max-w-[0rem] min-w-[0rem] w-0"
 					: "max-w-[20rem] min-w-[20rem] w-1/5"
-			} transition-all  absolute lg:relative h-screen z-[9999] overflow-hidden duration-200 flex-col lg:flex py-5 border-l-2 border-l-green-900 bg-[#202020]`}
+			} transition-all delay-75 absolute lg:relative h-screen z-[9999] overflow-hidden duration-200 flex-col lg:flex py-5 border-l-2 border-l-green-900 bg-[#202020]`}
 		>
 			<div className="absolute h-full w-full  sidebar top-0"></div>
-			<section className="w-full h-1/2 px-2 ">
+			<section
+				className={`w-full h-1/2 px-2 transition-all duration-150 ${
+					isCollapsed ? "opacity-0" : ""
+				}`}
+			>
 				<div className="w-full h-20 relative flex justify-start gap-2">
 					<Image
 						src={Batman}
@@ -50,7 +54,11 @@ const Sidebar: FC<SidebarProps> = ({ onPokedexClick, isCollapsed }) => {
 					</div>
 				</div>
 			</section>
-			<section className="w-full h-2/5 relative flex flex-col justify-start">
+			<section
+				className={`w-full h-2/5 relative flex flex-col justify-start transition-all duration-150 ${
+					isCollapsed ? "opacity-0" : ""
+				}`}
+			>
 				<button
 					className={`w-full flex items-center justify-start px-10 h-20 text-3xl font-bold transition-all duration-300 ${
 						isPokedex ? "bg-[#2c2c2c]" : ""

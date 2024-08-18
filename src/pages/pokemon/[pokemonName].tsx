@@ -6,7 +6,7 @@ import TypeAdvantage from "@/components/TypeAdvantage";
 import { getCapturedPokemons } from "../../pages/captured";
 import Image from "next/image";
 import RadarChart from "@/components/ui/RadarChart"; // Import the RadarChart component
-import HorizontalBarChart from "@/components/ui/HorizontalChart";
+import BarChart from "@/components/ui/BarChart";
 import { useWindowSize } from "@uidotdev/usehooks";
 import CaptureForm from "@/components/CaptureForm";
 import Link from "next/link";
@@ -70,7 +70,7 @@ const PokemonPage = () => {
 			>
 				Back
 			</Link>
-			<div className="sm:max-w-[50vw] max-w-[80vw] flex flex-col gap-5">
+			<div className="sm:max-w-[35vw] max-w-[80vw] flex flex-col rounded-2xl gap-5 bg-white/30">
 				<div className="flex justify-center h-[25vh] relative items-center rounded-md border border-gray-500/70 gradient-2">
 					<Image
 						src={pokemon.sprites.front_default}
@@ -114,9 +114,17 @@ const PokemonPage = () => {
 						{/* {size.width && size.width < 640 ? (
 							<RadarChart stats={pokemon.stats} />
 						) : (
-							<HorizontalBarChart stats={pokemon.stats} />
+							<BarChart stats={pokemon.stats} />
 						)} */}
-						<HorizontalBarChart stats={pokemon.stats} />
+						<BarChart
+							stats={pokemon.stats}
+							types={[pokemon.types[0].type.name]}
+						/>
+
+						{/* <RadarChart
+							stats={pokemon.stats}
+							types={[pokemon.types[0].type.name]}
+						/> */}
 					</div>
 				</div>
 				<div className="flex flex-col">
