@@ -19,7 +19,8 @@
     "target": "es2015",
     "paths": {
       "@/*": [
-        "./src/*"
+        "./src/*",
+        "./src/lib/utils/*"
       ]
     }
   },

@@ -70,15 +70,15 @@ const PokemonPage = () => {
 			>
 				Back
 			</Link>
-			<div className="sm:max-w-[35vw] max-w-[80vw] flex flex-col rounded-2xl gap-5 bg-white/30">
-				<div className="flex justify-center h-[25vh] relative items-center rounded-md border border-gray-500/70 gradient-2">
+			<div className="lg:w-[35vw] w-[80vw] border border-white/30 p-5  lg:mx-[20vw] flex flex-col rounded-2xl gap-5">
+				<div className="flex justify-center aspect-square w-[10vw] min-w-32 relative items-center rounded-md border border-gray-500/70 gradient-2">
 					<Image
 						src={pokemon.sprites.front_default}
 						alt={pokemon.name}
 						width={400}
 						height={400}
 						quality={100}
-						className="w-[10rem] absolute h-auto"
+						className="w-[6vw] min-w-24 absolute h-auto"
 					/>
 					{isCaptured && (
 						<div

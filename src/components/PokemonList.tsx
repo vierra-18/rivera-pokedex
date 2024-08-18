@@ -5,6 +5,7 @@ import { PokemonTypeName } from "@/utils/types";
 import Pokeball from "../styles/assets/pokeball.svg";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import AnimatedBackground from "./ui/AnimtedCardBackground";
 
 type Pokemon = {
 	id: number;
@@ -71,69 +72,82 @@ const PokemonList: React.FC<PokemonListProps> = ({ pokemonData, isGrid }) => {
 						animate="show"
 						exit="exit"
 					>
-						{pokemonData.map((pokemon) => (
-							<motion.li
-								key={pokemon.id}
-								variants={itemVariants}
-								transition={{ duration: 0.5 }}
-								className={`border border-gray-200/70 borderslate py-[2vw] sm:py-5 overflow-clip relative rounded-lg ${
-									isGrid ? "w-[25vw] sm:w-[15rem] xl:w-[20vw]" : "w-[50rem]"
-								} cursor-pointer`}
-								onClick={() => handlePokemonClick(pokemon)}
-							>
-								<Image
-									src={Pokeball}
-									alt="pokeball"
-									className={`absolute invert opacity-5 ${
-										isGrid
-											? "scale-[1.5] sm:scale-100 sm:w-60"
-											: "w-44  -top-3 -left-5 rotate-[30deg]"
-									} sm:scale-[.85] sm:-top-5 sm:-left-20 -bottom-5 -right-5 sm:rotate-[30deg] rotate-[-25deg]`}
-								/>
-								<div
-									className={`flex items-center ${
-										isGrid ? "flex-col" : ""
-									} sm:flex-row flex-wrap justify-center `}
+						<AnimatedBackground
+							className="rounded-lg bg-[#02020275]  dark:bg-zinc-800"
+							transition={{
+								type: "spring",
+								bounce: 0.2,
+								duration: 0.6,
+							}}
+							enableHover
+						>
+							{pokemonData.map((pokemon, index) => (
+								<motion.li
+									key={pokemon.id && index}
+									data-id={`card-${index}`}
+									variants={itemVariants}
+									transition={{ duration: 0.5 }}
+									className={`border select-none z-20 border-gray-200/70 borderslate py-[2vw] sm:py-5 overflow-clip relative rounded-lg ${
+										isGrid ? "w-[25vw] sm:w-[15rem] xl:w-[20vw]" : "w-[50rem]"
+									} cursor-pointer`}
+									onClick={() => handlePokemonClick(pokemon)}
 								>
-									<div className="shrink-0 rounded-md flex justify-center p-1 flex-1 md:mr-4 ">
-										<img
-											src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-											alt={pokemon.name}
-											className="sm:min-w-20 sm:w-[5w] w-[5rem] h-auto"
-										/>
-									</div>
+									<Image
+										src={Pokeball}
+										alt="pokeball"
+										className={`absolute invert opacity-5 ${
+											isGrid
+												? "scale-[1.5] sm:scale-100 sm:w-60"
+												: "w-44  -top-3 -left-5 rotate-[30deg]"
+										} sm:scale-[.85] sm:-top-5 sm:-left-20 -bottom-5 -right-5 sm:rotate-[30deg] rotate-[-25deg]`}
+									/>
 									<div
-										className={`flex flex-1 justify-center items-center md:items-start flex-col`}
+										className={`flex items-center  w-full ${
+											isGrid ? "flex-col" : ""
+										} sm:flex-row flex-wrap justify-center `}
 									>
-										<p className="font-extrabold sm:text-base text-xs">
-											{pokemon.name.charAt(0).toUpperCase() +
-												pokemon.name.slice(1)}
-										</p>
-										<p className="font-thin text-xs sm:text-base opacity-65">
-											#{pokemon.id.toString().padStart(3, "0")}
-										</p>
-										<div className={`sm:flex gap-1 ${isGrid ? "hidden" : ""}`}>
-											<div className="flex gap-1 flex-wrap justify-center md:justify-start flex-col sm:flex-row">
-												{pokemon.types.map((t) => (
-													<TypeBadge
-														key={t.type.name}
-														typeName={t.type.name as PokemonTypeName}
-													/>
-												))}
-												{pokemon.types.length === 1 && (
-													<div className="opacity-0  pointer-events-none hidden sm:block">
+										<div className="shrink-0 rounded-md flex justify-center p-1 flex-1 md:mr-4 ">
+											<img
+												src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+												alt={pokemon.name}
+												className="sm:min-w-20 sm:w-[5w] w-[5rem] h-auto"
+											/>
+										</div>
+										<div
+											className={`flex flex-1 justify-center items-center md:items-start flex-col`}
+										>
+											<p className="font-extrabold sm:text-base text-xs">
+												{pokemon.name.charAt(0).toUpperCase() +
+													pokemon.name.slice(1)}
+											</p>
+											<p className="font-thin text-xs sm:text-base opacity-65">
+												#{pokemon.id.toString().padStart(3, "0")}
+											</p>
+											<div
+												className={`sm:flex gap-1 ${isGrid ? "hidden" : ""}`}
+											>
+												<div className="flex gap-1 flex-wrap justify-center md:justify-start flex-col sm:flex-row">
+													{pokemon.types.map((t) => (
 														<TypeBadge
-															key={"steel"}
-															typeName={"steel" as PokemonTypeName}
+															key={t.type.name}
+															typeName={t.type.name as PokemonTypeName}
 														/>
-													</div>
-												)}
+													))}
+													{pokemon.types.length === 1 && (
+														<div className="opacity-0  pointer-events-none hidden sm:block">
+															<TypeBadge
+																key={"steel"}
+																typeName={"steel" as PokemonTypeName}
+															/>
+														</div>
+													)}
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</motion.li>
-						))}
+								</motion.li>
+							))}
+						</AnimatedBackground>
 					</motion.ul>
 				</AnimatePresence>
 			)}

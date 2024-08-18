@@ -57,13 +57,19 @@ const BarChart: React.FC<BarChartProps> = ({ stats, types }) => {
 	const chartColor = typeColors[primaryType] || typeColors.normal;
 
 	const chartData = {
-		labels: stats.map((stat) =>
-			stat.stat.name
-				.toString()
+		labels: stats.map((stat) => {
+			let name = stat.stat.name.toString();
+
+			// Modify names for special cases
+			if (name === "special-defense") return "Sp. Def";
+			if (name === "special-attack") return "Sp. Atk";
+
+			// Capitalize other names normally
+			return name
 				.split("-")
 				.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-				.join(" ")
-		),
+				.join(" ");
+		}),
 		datasets: [
 			{
 				axis: "y",
@@ -72,7 +78,7 @@ const BarChart: React.FC<BarChartProps> = ({ stats, types }) => {
 				backgroundColor: chartColor, // Use chartColor here
 				categoryPercentage: 0,
 				borderWidth: 1,
-				barThickness: 40,
+				barThickness: 30,
 			},
 		],
 	};
@@ -91,15 +97,23 @@ const BarChart: React.FC<BarChartProps> = ({ stats, types }) => {
 				ticks: {
 					color: "#f8f8f8",
 				},
+				border: {
+					color: "transparent", // y-axis line color
+					width: 2, // y-axis line width
+				},
 			},
 			y: {
 				borderColor: "transparent",
 				max: 255,
 				grid: {
-					display: false
+					display: false,
 				},
 				ticks: {
 					display: false,
+				},
+				border: {
+					color: "transparent", // y-axis line color
+					width: 2, // y-axis line width
 				},
 			},
 		},
@@ -125,7 +139,7 @@ const BarChart: React.FC<BarChartProps> = ({ stats, types }) => {
 	};
 
 	return (
-		<div className="relative w-full  px-[3vw] flex justify-start">
+		<div className="relative w-full  flex justify-start">
 			<Bar data={chartData} options={options as any} />
 		</div>
 	);
