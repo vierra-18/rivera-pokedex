@@ -16,6 +16,7 @@ interface Pokemon {
 	stats: PokemonStat[];
 	types: PokemonType[];
 	flavorText: string;
+	genera: string;
 }
 
 interface TypeDetails {
@@ -63,16 +64,19 @@ const fetchPokemonData = async (
 			const flavorTexts = speciesData.flavor_text_entries.filter(
 				(entry: { language: { name: string } }) => entry.language.name === "en"
 			);
+			const genera = speciesData.genera.filter(
+				(entry: { language: { name: string } }) => entry.language.name === "en"
+			);
 
 			// Pick a random flavor text entry
 			const randomFlavorText =
-				flavorTexts[
-					Math.floor(Math.random() * flavorTexts.length)
-				]?.flavor_text || "";
+				flavorTexts[Math.floor(Math.random() * flavorTexts.length)]
+					?.flavor_text || "";
 
 			return {
 				...pokemonData,
 				flavorText: randomFlavorText,
+				genera: genera,
 			};
 		}
 	);

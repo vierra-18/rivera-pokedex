@@ -106,7 +106,11 @@ const BarChart: React.FC<BarChartProps> = ({ stats, types }) => {
 				borderColor: "transparent",
 				max: 255,
 				grid: {
-					display: false,
+					display: true,
+					color: "#FFFFFF17", // y-axis line color
+					width: 2, // y-axis line width
+					drawBorder: false,
+					drawTicks: false,
 				},
 				ticks: {
 					display: false,
@@ -139,8 +143,8 @@ const BarChart: React.FC<BarChartProps> = ({ stats, types }) => {
 	};
 
 	return (
-		<div className="relative w-full  flex justify-start">
-			<Bar data={chartData} options={options as any} />
+		<div className="relative w-[99%] h-[20vh] flex justify-start">
+			<Bar data={chartData} options={options as any} />	
 		</div>
 	);
 };

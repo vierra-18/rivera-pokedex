@@ -16,7 +16,7 @@ const GridList: React.FC<GridListProps> = ({ onViewToggle }) => {
 	return (
 		<button
 			id="grid-list-toggle"
-			className={`grid-list ${isListView ? 'list' : 'grid'} show-guide`}
+			className={`grid-list ${isListView ? 'list' : 'grid'} `}
 			onClick={toggleView}
 		>
 			<div className="bar"></div>

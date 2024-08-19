@@ -20,7 +20,8 @@
     "paths": {
       "@/*": [
         "./src/*",
-        "./src/lib/utils/*"
+        "./src/lib/utils/*",
+        "./src/styles/assets/*"
       ]
     }
   },

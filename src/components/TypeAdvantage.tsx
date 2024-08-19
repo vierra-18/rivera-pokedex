@@ -12,7 +12,7 @@ const TypeAdvantage: React.FC<TypeAdvantageProps> = ({
 	strengths,
 }) => {
 	return (
-		<div className="my-1">
+		<div className="">
 			{/* {weaknesses && <h3 className="text-xl font-semibold">Weak Against:</h3>} */}
 			{weaknesses && weaknesses.length > 0 ? (
 				<div className="flex flex-wrap">
