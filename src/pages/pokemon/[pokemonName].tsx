@@ -5,7 +5,7 @@ import { PokemonTypeName } from "@/utils/types";
 import TypeAdvantage from "@/components/TypeAdvantage";
 import { getCapturedPokemons } from "../../pages/captured";
 import Image from "next/image";
-import RadarChart from "@/components/ui/RadarChart"; // Import the RadarChart component
+import RadarChart from "@/components/ui/RadarChart";
 import BarChart from "@/components/ui/BarChart";
 import { useWindowSize } from "@uidotdev/usehooks";
 import CaptureForm from "@/components/CaptureForm";
@@ -84,6 +84,16 @@ const PokemonPage = () => {
 		: isShiny
 		? pokemon.sprites.front_shiny
 		: pokemon.sprites.front_default;
+
+	const spriteAnimatedUrl = isBack
+		? isShiny
+			? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/shiny/${pokemon.id}.gif`
+			: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/${pokemon.id}.gif`
+		: isShiny
+		? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/${pokemon.id}.gif`
+		: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon.id}.gif`;
+
+	const spriteSize = Math.max(60, Math.min((pokemon.height / 10) * 50, 100));
 	return (
 		<div className="flex relative items-center justify-center  py-20 min-h-screen !overflow-x-hidden flex-col gap-5 ">
 			<Link
@@ -132,7 +142,9 @@ const PokemonPage = () => {
 							<span className="border opacity-25"></span>
 							<div className="flex flex-col py-3 ">
 								<span className=" text-center capitalize text-xl">
-									{pokemon.genera[0].genus.replace(/Pokémon/i, "")}
+									{pokemon.genera[0].genus
+										? pokemon.genera[0].genus.replace(/Pokémon/i, "")
+										: "N/A"}
 								</span>
 								<span className="capitalize text-sm text-white/30 text-center">
 									category
@@ -141,15 +153,27 @@ const PokemonPage = () => {
 						</div>
 					</div>
 					{/* <div className="absolute bg-black right-0"> */}
-					<div className="flex justify-center sm:aspect-square h-40 sm:h-auto w-full sm:w-[10vw] min-w-32 relative items-center rounded-md border border-gray-500/70 gradient-2">
-						<Image
-							src={spriteUrl}
-							alt={pokemon.name}
-							width={400}
-							height={400}
-							quality={100}
-							className="w-[6vw] min-w-24 absolute h-auto"
-						/>
+					<div className="flex justify-center sm:aspect-square h-40 sm:h-auto group w-full sm:w-[10vw] min-w-32 relative items-center rounded-md border border-gray-500/70 gradient-2">
+						<div className="w-fit h-full grid place-items-center ">
+							<Image
+								src={spriteUrl}
+								alt={pokemon.name}
+								width={200}
+								// width={spriteSize}
+								height={200}
+								quality={100}
+								className={`w-28 absolute group-hover:opacity-0 transition-all duration-300`}
+							/>{" "}
+							<Image
+								src={spriteAnimatedUrl}
+								alt={pokemon.name}
+								// width={10}
+								width={spriteSize * 1.2}
+								height={200}
+								quality={100}
+								className={` absolute opacity-0 group-hover:opacity-100  transition-all duration-300`}
+							/>
+						</div>
 						{isCaptured && (
 							<div
 								className="pokeball still absolute bottom-0 right-0 m-5"

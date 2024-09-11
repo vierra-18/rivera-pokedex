@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Pokeball from "../styles/assets/pokeball.svg";
 import TypeBadge from "./ui/TypeBadge";
@@ -33,18 +33,27 @@ export const getCapturedPokemons = (): CapturedPokemon[] => {
 	const storedData = localStorage.getItem("captured");
 	return storedData ? JSON.parse(storedData) : [];
 };
+
+export const setCapturedPokemons = (pokemons: CapturedPokemon[]) => {
+	localStorage.setItem("captured", JSON.stringify(pokemons));
+};
+
 interface CapturedProps {
 	isGrid?: boolean; // Make isGrid optional
 }
+
 const Captured: React.FC<CapturedProps> = ({ isGrid }) => {
 	const [capturedPokemons, setCapturedPokemons] = useState<CapturedPokemon[]>(
 		[]
 	);
 
+	const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+	const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
+	const modalRef = useRef<HTMLFieldSetElement | null>(null); // Reference to the modal content
+
 	useEffect(() => {
 		setCapturedPokemons(getCapturedPokemons());
 	}, []);
-	console.log(capturedPokemons, "captured pokemons");
 
 	const router = useRouter();
 
@@ -52,6 +61,23 @@ const Captured: React.FC<CapturedProps> = ({ isGrid }) => {
 		sessionStorage.setItem("selectedPokemon", JSON.stringify(pokemon));
 		router.push(`/pokemon/${pokemon.name}`);
 	};
+
+	// console.log(capturedPokemons[0]?.date);
+
+	const handleReleasePokemon = (pokemonToRelease: CapturedPokemon) => {
+		const updatedPokemons = capturedPokemons.filter(
+			(capturedPokemon) =>
+				capturedPokemon.pokemon.id !== pokemonToRelease.pokemon.id ||
+				capturedPokemon.date !== pokemonToRelease.date
+		);
+
+		// Update local storage directly
+		localStorage.setItem("captured", JSON.stringify(updatedPokemons));
+
+		// Optionally update the state
+		setCapturedPokemons(updatedPokemons);
+	};
+
 	const containerVariants = {
 		hidden: { opacity: 0 },
 		show: {
@@ -73,6 +99,28 @@ const Captured: React.FC<CapturedProps> = ({ isGrid }) => {
 	};
 
 	console.log(capturedPokemons);
+
+	const handleOpenModal = () => {
+		setIsModalVisible(true);
+	};
+
+	const handleClickOutside = (event: MouseEvent) => {
+		if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+			setIsModalVisible(false);
+		}
+	};
+
+	useEffect(() => {
+		if (isModalVisible) {
+			document.addEventListener("mousedown", handleClickOutside);
+		} else {
+			document.removeEventListener("mousedown", handleClickOutside);
+		}
+
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [isModalVisible]);
 
 	return (
 		<div className="">
@@ -144,6 +192,44 @@ const Captured: React.FC<CapturedProps> = ({ isGrid }) => {
 													</div>
 												)}
 											</div>
+											<button
+												onClick={(e) => {
+													e.stopPropagation();
+													// handleReleasePokemon(pokemon);
+													handleOpenModal();
+												}}
+												className="mt-2 text-red-500 hover:underline"
+											>
+												Release
+											</button>
+
+											<AnimatePresence>
+												{isModalVisible && (
+													<motion.div className="fixed inset-0 flex items-center justify-center bg-black backdrop-blur-lg bg-opacity-80 z-50">
+														<motion.fieldset
+															ref={modalRef}
+															initial={{ opacity: 0, scale: 0.5 }}
+															animate={{ opacity: 1, scale: 1 }}
+															exit={{ opacity: 0, scale: 0.5 }}
+															transition={{ duration: 0.3 }}
+															className="bg-neutral-900/20 border border-gray-700/40  sm:pb-12 pb-[20vw] text-white flex flex-col justify-center items-center sm:flex-row gap-4 p-6 rounded-lg"
+														>
+															<legend className="capitalize p-1 px-3 mx-auto text-white border bg-red-700  rounded-md ">{`confirm release`}</legend>
+															<div className="flex flex-col w-24  pb-1 items-center relative">
+																<button
+																	onClick={(e) => {
+																		e.stopPropagation();
+																		handleReleasePokemon(pokemon);
+																	}}
+																	className="mt-2 text-red-500 hover:underline"
+																>
+																	Release
+																</button>
+															</div>
+														</motion.fieldset>
+													</motion.div>
+												)}
+											</AnimatePresence>
 										</div>
 									</div>
 								</div>

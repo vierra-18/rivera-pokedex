@@ -12,7 +12,7 @@ const Home = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [page, setPage] = useState(0);
 	const limit = 12;
-	const offset = page * limit;
+	const offset = page * limit + 251;
 	const size = useWindowSize();
 
 	const {
@@ -109,7 +109,6 @@ const Home = () => {
 						<div className="min-h-[60vh]">
 							{isPokedex ? (
 								<PokemonList
-								
 									isGrid={isListView}
 									pokemonData={pokemonData}
 									// onPokemonClick={handlePokemonClick}
